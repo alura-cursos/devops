@@ -1,0 +1,5 @@
+# iniciando com ci
+job1:
+  script:
+  - echo "hello world"
+ 
