@@ -1,0 +1,13 @@
+[config]
+# Secret configuration
+SECRET_KEY = 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+
+# conf
+DEBUG=True
+
+# Database
+DB_NAME = "todo_dev"
+DB_USER = "devops_dev"
+DB_PASSWORD = "mestre"
+DB_HOST = "db"
+DB_PORT = "3306"

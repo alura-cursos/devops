@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Todos</title>
+    {% block extra_styles %}
+    {% endblock %}
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper blue darken-4">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="{% url 'list_to_do' %}"><i class="fas fa-list-ul text-white fa-2x"></i></a></li>
+        <li><a href="{% url 'new_to_do' %}"><i class="fas fa-plus text-white fa-2x"></i></a></li>
+
+      </ul>
+        {% if user.is_authenticated %}
+        <div class="text-right">
+            <button type="button" class="btn btn-warning" >User: {{ user.get_username }}</button>
+            <a class="btn btn-outline-info" href="{% url 'logout' %}" role="button">Log Out</a>
+        {% endif %}
+
+        </div>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+      {% block content %}
+      {% endblock %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

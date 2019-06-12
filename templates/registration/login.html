@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load bootstrap%}
+{% load widget_tweaks %}
+{% load static %}
+{% load staticfiles %}
+
+
+{% block extrastylesheets %}
+<link rel="stylesheet" href="{% static '' %}">
+{% endblock  %}
+{% block menu %}
+{% endblock  %}
+
+{% block content %}
+    <div class="container text-center">
+    <form class="form-signin" method="post">
+        {% csrf_token %}
+      <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+        {% render_field form.username class="form-control " placeholder='Login' %}
+        {% render_field form.password class="form-control " placeholder='Senha' %}
+      <button class="btn btn-lg btn-outline-success btn-block" type="submit">Log In</button>
+      <p class="mt-5 mb-3 text-muted">Jenkins Alura</p>
+    </form>
+    </div>
+{% endblock  %}
+	
+{% block extrascripts %}
+
+
+{% endblock  %}	
+
