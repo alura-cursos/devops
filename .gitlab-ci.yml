@@ -1,15 +1,13 @@
 # iniciando com ci
 
-image: docker:stable
-
-services:
-- docker:dind
-
 before_script:
+  - sudo apt-get remove docker docker-engine
+  - sudo curl -sSL https://get.docker.com/ | sh
+  - sudo rm /usr/local/bin/docker-compose
   - docker info
 
 
-buildImage:
+build-docker:
   stage: build
   script:
-  - echo "hello world"
+  - docker build -t minha-imagem .
