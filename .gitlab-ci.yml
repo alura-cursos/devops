@@ -1,11 +1,12 @@
 # iniciando com ci
+
+image: docker:stable
+
 services:
 - docker:dind
 
 before_script:
-  - curl -sSL https://get.docker.com/ | sh
   - docker info
-
 
 
 build-docker:
