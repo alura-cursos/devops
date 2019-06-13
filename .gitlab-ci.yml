@@ -2,7 +2,6 @@
 
 before_script:
   - curl -sSL https://get.docker.com/ | sh
-  - rm /usr/local/bin/docker-compose
   - docker info
 
 
