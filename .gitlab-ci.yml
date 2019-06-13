@@ -13,3 +13,6 @@ build-docker:
   stage: build
   script:
   - docker build -t minha-imagem .
+  - docker pull minha-imagem:latest || true
+  - docker tag minha-imagem:latest minha-imagem:latest
+  - docker push jnlucas/minha-imagem:latest
