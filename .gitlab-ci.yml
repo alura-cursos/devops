@@ -4,6 +4,8 @@ before_script:
   - curl -sSL https://get.docker.com/ | sh
   - docker info
 
+service:
+- docker:dind
 
 build-docker:
   stage: build
