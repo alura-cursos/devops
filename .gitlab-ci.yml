@@ -2,6 +2,10 @@
 
 image: docker:stable
 
- before_script:
-   - docker info
-  
+before_script:
+  - docker info
+ 
+
+buildImage:
+  script:
+  - echo "hello world"
