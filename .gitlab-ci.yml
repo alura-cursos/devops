@@ -2,10 +2,14 @@
 
 image: docker:stable
 
+services:
+- docker:dind
+
 before_script:
   - docker info
- 
+
 
 buildImage:
+  stage: build
   script:
   - echo "hello world"
