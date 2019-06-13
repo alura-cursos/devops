@@ -4,7 +4,7 @@ before_script:
   - curl -sSL https://get.docker.com/ | sh
   - docker info
 
-service:
+services:
 - docker:dind
 
 build-docker:
