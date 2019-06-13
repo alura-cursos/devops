@@ -1,11 +1,12 @@
 # iniciando com ci
+services:
+- docker:dind
 
 before_script:
   - curl -sSL https://get.docker.com/ | sh
   - docker info
 
-services:
-- docker:dind
+
 
 build-docker:
   stage: build
