@@ -1,5 +1,8 @@
 # iniciando com ci
+
+before_scripts:
+  - docker build -t image_python .
+
 job1:
   script:
   - echo "hello world"
- 
