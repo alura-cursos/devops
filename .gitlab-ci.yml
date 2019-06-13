@@ -13,5 +13,5 @@ build-docker:
   stage: build
   script:
   - docker build -t minha-imagem .
-  - docker tag minha-imagem:1.0.0 minha-imagem
+  - docker tag minha-imagem minha-imagem:1.0.0
   - docker push jnlucas/minha-imagem:latest
