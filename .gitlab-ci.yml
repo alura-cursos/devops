@@ -1,12 +1,7 @@
 # iniciando com ci
 
+image: docker:stable
 
-services:
-  - docker:dind
+ before_script:
+   - docker info
   
-before_script:
-  - docker build -t image_python .
-
-job1:
-  script:
-  - echo "hello world"
