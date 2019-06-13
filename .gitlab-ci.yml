@@ -1,5 +1,9 @@
 # iniciando com ci
 
+
+services:
+  - docker:dind
+  
 before_script:
   - docker build -t image_python .
 
