@@ -1,6 +1,6 @@
 # iniciando com ci
 
-before_scripts:
+before_script:
   - docker build -t image_python .
 
 job1:
