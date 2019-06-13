@@ -1,9 +1,9 @@
 # iniciando com ci
 
 before_script:
-  - sudo apt-get remove docker docker-engine
-  - sudo curl -sSL https://get.docker.com/ | sh
-  - sudo rm /usr/local/bin/docker-compose
+  - apt-get remove docker docker-engine
+  - curl -sSL https://get.docker.com/ | sh
+  - rm /usr/local/bin/docker-compose
   - docker info
 
 
