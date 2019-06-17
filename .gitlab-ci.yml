@@ -19,6 +19,9 @@ build-docker:
 build-project:
   stage: build
   tags:
-   - meu-runner
+  - meu-job
+  dependencies:
+  - build-docker
+
   script:
    - echo "meu runner"
