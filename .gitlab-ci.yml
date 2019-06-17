@@ -37,6 +37,7 @@ build-docker:
 
 build-project:
   stage: build
+  image: jnlucas/minha-imagem:latest
   tags:
   - meu-job
   dependencies:
