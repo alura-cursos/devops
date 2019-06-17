@@ -46,3 +46,13 @@ build-project:
   script:
   - python manage.py makemigrations
   - python manage.py migrate
+
+
+test-project:
+  stage: test
+  tags:
+  - meu-job
+  dependencies:
+  - build-project
+  script:
+  - python -m unittest setUp
