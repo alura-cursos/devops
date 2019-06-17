@@ -11,6 +11,11 @@ services:
   - docker:dind
   - mysql:5.7
 variables:
+  MYSQL_USER: devops_dev
+  MYSQL_PASSWORD: mestre
+  MYSQL_DATABASE: todo_dev
+  MYSQL_ROOT_PASSWORD: senha
+
   SECRET_KEY: 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
   DB_NAME: 'todo_dev'
   DB_USER: 'devops_dev'
@@ -32,6 +37,7 @@ build-docker:
 
 build-project:
   stage: build
+  image: jnlucas/minha-imagem:latest
   tags:
   - meu-job
   dependencies:
