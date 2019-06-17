@@ -27,7 +27,7 @@ build-project:
   tags:
   - meu-job
   dependencies:
-  - build:build-docker
+  - build-docker
 
   script:
    - echo "meu runner"
