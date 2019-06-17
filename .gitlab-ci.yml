@@ -8,7 +8,15 @@ stages:
   - deploy
 
 services:
-- docker:dind
+  - docker:dind
+  - mysql:5.7
+variables:
+  SECRET_KEY: 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+  DB_NAME: 'todo_dev'
+  DB_USER: 'devops_dev'
+  DB_PASSWORD: 'mestre'
+  DB_HOST: 'mysql'
+  DB_PORT: '3306'
 
 
 build-docker:
@@ -30,4 +38,5 @@ build-project:
   - build-docker
 
   script:
-   - echo "meu runner"
+  - python manage.py makemigrations
+  - python manage.py migrate
