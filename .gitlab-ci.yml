@@ -50,6 +50,7 @@ build-project:
 
 test-project:
   stage: test
+  image: jnlucas/minha-imagem:latest
   tags:
   - meu-job
   dependencies:
