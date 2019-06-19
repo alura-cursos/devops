@@ -1,3 +1,5 @@
+image: docker:stable
+
 build-docker:
   stage: build
   script:
