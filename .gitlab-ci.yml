@@ -52,6 +52,7 @@ build-project:
   - python manage.py migrate
 
 test-project:
+  image: jnlucas/minha-imagem:latest
   stage: test
   services:
   - docker:dind
