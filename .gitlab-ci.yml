@@ -18,7 +18,7 @@ build-project:
   stage: build
   tags:
   - executor-tarefas
-  script:
+  script: 
   - echo "runner"
 
 
