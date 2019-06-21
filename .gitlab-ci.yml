@@ -30,17 +30,17 @@ build-project:
   - docker:dind
   - mysql:5.7
   variables:
-    MYSQL_USER: devops_dev
-    MYSQL_PASSWORD: mestre
-    MYSQL_DATABASE: todo_dev
-    MYSQL_ROOT_PASSWORD: senha
+    MYSQL_USER: $DB_USER 
+    MYSQL_PASSWORD: $DB_PASSWORD 
+    MYSQL_DATABASE: $DB_DATABASE 
+    MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD 
 
-    DB_NAME: 'todo_dev'
-    DB_USER: 'devops_dev'
-    DB_PASSWORD: 'mestre'
+    DB_NAME: $DB_DATABASE
+    DB_USER: $DB_USER
+    DB_PASSWORD: $DB_PASSWORD
     DB_PORT: '3306'
     DB_HOST: 'mysql'
-    SECRET_KEY: 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+    SECRET_KEY: $DB_SECRET_KEY
 
   stage: build
   tags:
@@ -58,17 +58,17 @@ test-project:
   - docker:dind
   - mysql:5.7
   variables:
-    MYSQL_USER: devops_dev
-    MYSQL_PASSWORD: mestre
-    MYSQL_DATABASE: todo_dev
-    MYSQL_ROOT_PASSWORD: senha
+    MYSQL_USER: $DB_USER 
+    MYSQL_PASSWORD: $DB_PASSWORD 
+    MYSQL_DATABASE: $DB_DATABASE 
+    MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD 
 
-    DB_NAME: 'todo_dev'
-    DB_USER: 'devops_dev'
-    DB_PASSWORD: 'mestre'
+    DB_NAME: $DB_DATABASE
+    DB_USER: $DB_USER
+    DB_PASSWORD: $DB_PASSWORD
     DB_PORT: '3306'
     DB_HOST: 'mysql'
-    SECRET_KEY: 'r*5ltfzw-61ksdm41fuul8+hxs$86yo9%k1%k=(!@=-wv4qtyv'
+    SECRET_KEY: $DB_SECRET_KEY
   dependencies:
   - build-project
   tags:
