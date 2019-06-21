@@ -1,5 +1,11 @@
 image: docker:stable
 
+stages:
+- pre-build
+- build
+- test
+- deploy
+
 services:
 - docker:dind 
 
@@ -8,7 +14,7 @@ before_script:
 - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
 
 build-docker:
-  stage: build
+  stage: pre-build
   script:
   - docker build -t minha-imagem .
   - docker tag minha-imagem jnlucas/minha-imagem:latest
