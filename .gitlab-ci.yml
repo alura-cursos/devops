@@ -16,6 +16,8 @@ build-docker:
 
 build-project:
   stage: build
+  dependencies:
+  - build-docker
   tags:
   - executor-tarefas
   script: 
