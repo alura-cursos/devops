@@ -14,13 +14,12 @@ build-docker:
   - docker tag minha-imagem jnlucas/minha-imagem:latest
   - docker push jnlucas/minha-imagem:latest
 
-
 build-project:
   stage: build
   tags:
   - executor-tarefas
   script:
-  - echo "funcionou" 
+  - echo "runner"
 
 
 
