@@ -25,6 +25,7 @@ build-docker:
 
 
 build-project:
+  image: jnlucas/minha-imagem:latest
   services:
   - docker:dind
   - mysql:5.7
