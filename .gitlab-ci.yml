@@ -76,16 +76,6 @@ test-project:
   script:
   - python -m unittest setUp
 
-deploy-project:
-  stage: deploy
-  dependencies:
-  - test-project
-  tags:
-  - executor-deploy
-  script:
-  - tar cfz arquivos.tgz *
-  - scp arquivos.tgz aluraverde@192.168.1.34:/Users/Shared/deploy/
-  
 
 
 
