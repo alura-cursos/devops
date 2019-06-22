@@ -77,6 +77,19 @@ test-project:
   - python -m unittest setUp
 
 
+deploy-project:
+  stage: deploy
+  dependencies:
+  - test-project
+  tags:
+  - executor-deploy
+  script:
+  - tar cfz arquivos.tgz * 
+
+
+
+
+
 
 
 
