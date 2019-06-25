@@ -5,6 +5,7 @@ stages:
 - build
 - test
 - deploy 
+- notificacao
 
 
 
@@ -87,10 +88,10 @@ deploy-project:
   script:
   - tar cfz arquivos.tgz * 
   - scp arquivos.tgz aluraverde@192.168.1.34:/Users/Shared/deploy/
-  - ssh aluraverde@192.168.1.34 'mv oi /teste; cd /Users/Shared/deploy/; tar xfz arquivos.tgz; /usr/local/bin/docker-compose up -d'
+  - ssh aluraverde@192.168.1.34 'cd /homeu/teste; cd /Users/Shared/deploy/; tar xfz arquivos.tgz; /usr/local/bin/docker-compose up -d'
 
 notificacao-sucesso:
-  stage: deploy
+  stage: notificacao
   tags:
   - executor-deploy
   when: on_success
@@ -98,7 +99,7 @@ notificacao-sucesso:
   - echo "hello deu certo"
 
 notificacao-falhas:
-  stage: deploy
+  stage: notificacao
   tags:
   - executor-deploy
   when: on_failure
