@@ -8,88 +8,102 @@ stages:
 
 
 
-build-docker:
-  services:
-  - docker:dind 
-  retry: 2 
-  before_script:
-  - docker info
-  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+# build-docker:
+#   services:
+#   - docker:dind 
+#   retry: 2 
+#   before_script:
+#   - docker info
+#   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
 
 
-  stage: pre-build
-  script:
-  - docker build -t minha-imagem .
-  - docker tag minha-imagem jnlucas/minha-imagem:latest
-  - docker push jnlucas/minha-imagem:latest
+#   stage: pre-build
+#   script:
+#   - docker build -t minha-imagem .
+#   - docker tag minha-imagem jnlucas/minha-imagem:latest
+#   - docker push jnlucas/minha-imagem:latest
 
 
-build-project:
-  image: jnlucas/minha-imagem:latest
-  retry: 2 
-  services:
-  - docker:dind
-  - mysql:5.7
-  variables:
-    MYSQL_USER: $DB_USER 
-    MYSQL_PASSWORD: $DB_PASSWORD 
-    MYSQL_DATABASE: $DB_DATABASE 
-    MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD 
+# build-project:
+#   image: jnlucas/minha-imagem:latest
+#   retry: 2 
+#   services:
+#   - docker:dind
+#   - mysql:5.7
+#   variables:
+#     MYSQL_USER: $DB_USER 
+#     MYSQL_PASSWORD: $DB_PASSWORD 
+#     MYSQL_DATABASE: $DB_DATABASE 
+#     MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD 
 
-    DB_NAME: $DB_DATABASE
-    DB_USER: $DB_USER
-    DB_PASSWORD: $DB_PASSWORD
-    DB_PORT: '3306'
-    DB_HOST: 'mysql'
-    SECRET_KEY: $DB_SECRET_KEY
+#     DB_NAME: $DB_DATABASE
+#     DB_USER: $DB_USER
+#     DB_PASSWORD: $DB_PASSWORD
+#     DB_PORT: '3306'
+#     DB_HOST: 'mysql'
+#     SECRET_KEY: $DB_SECRET_KEY
 
-  stage: build
-  tags:
-  - executor-tarefas
-  dependencies:
-  - build-docker
-  script:
-  - python manage.py makemigrations
-  - python manage.py migrate
+#   stage: build
+#   tags:
+#   - executor-tarefas
+#   dependencies:
+#   - build-docker
+#   script:
+#   - python manage.py makemigrations
+#   - python manage.py migrate
 
-test-project:
-  image: jnlucas/minha-imagem:latest
-  stage: test
-  services:
-  - docker:dind
-  - mysql:5.7
-  variables:
-    MYSQL_USER: $DB_USER 
-    MYSQL_PASSWORD: $DB_PASSWORD 
-    MYSQL_DATABASE: $DB_DATABASE 
-    MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD 
+# test-project:
+#   image: jnlucas/minha-imagem:latest
+#   stage: test
+#   services:
+#   - docker:dind
+#   - mysql:5.7
+#   variables:
+#     MYSQL_USER: $DB_USER 
+#     MYSQL_PASSWORD: $DB_PASSWORD 
+#     MYSQL_DATABASE: $DB_DATABASE 
+#     MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD 
 
-    DB_NAME: $DB_DATABASE
-    DB_USER: $DB_USER
-    DB_PASSWORD: $DB_PASSWORD
-    DB_PORT: '3306'
-    DB_HOST: 'mysql'
-    SECRET_KEY: $DB_SECRET_KEY
-  dependencies:
-  - build-project
-  tags:
-  - executor-tarefas
-  script:
-  - python -m unittest setUp
+#     DB_NAME: $DB_DATABASE
+#     DB_USER: $DB_USER
+#     DB_PASSWORD: $DB_PASSWORD
+#     DB_PORT: '3306'
+#     DB_HOST: 'mysql'
+#     SECRET_KEY: $DB_SECRET_KEY
+#   dependencies:
+#   - build-project
+#   tags:
+#   - executor-tarefas
+#   script:
+#   - python -m unittest setUp
 
 
 deploy-project:
   stage: deploy
   tags:
   - executor-deploy
-  dependencies:
-  - test-project
+  # dependencies:
+  # - test-project
   script:
   - tar cfz arquivos.tgz * 
   - scp arquivos.tgz aluraverde@192.168.1.34:/Users/Shared/deploy/
   - ssh aluraverde@192.168.1.34 'cd /Users/Shared/deploy/; tar xfz arquivos.tgz; /usr/local/bin/docker-compose up -d'
 
+notificacao-sucesso:
+  stage: deploy
+  tags:
+  - executor-deploy
+  when: on_success
+  script:
+  - echo "hello deu certo"
 
+notificacao-falhas:
+  stage: deploy
+  tags:
+  - executor-deploy
+  when: on_failure
+  script:
+  - echo "hello deu errado"
 
 
 
