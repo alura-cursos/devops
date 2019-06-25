@@ -82,8 +82,8 @@ deploy-project:
   stage: deploy
   tags:
   - executor-deploy
-  dependencies:
-  - test-project
+  # dependencies:
+  # - test-project
   script:
   - tar cfz arquivos.tgz * 
   - scp arquivos.tgz aluraverde@192.168.1.34:/Users/Shared/deploy/
