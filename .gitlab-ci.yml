@@ -84,6 +84,8 @@ deploy-project:
   script:
   - tar cfz arquivos.tgz * 
   - scp arquivos.tgz aluraverde@192.168.1.34:/Users/Shared/deploys/
+  - ssh aluraverde@192.168.1.34 'cd /Users/Shared/deploys/; tar xfz arquivos.tgz; /usr/local/docker-compose up -d'
+  
   
 
 

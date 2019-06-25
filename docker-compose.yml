@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+       MYSQL_DATABASE: 'todo_dev'
+       MYSQL_USER: 'devops_dev'
+       MYSQL_PASSWORD: 'mestre'
+       MYSQL_ROOT_PASSWORD: 'senha'
+  web:
+    image: jnlucas/minha-imagem:latest
+    volumes:
+      - ./env:/usr/src/app/to_do/.env
+    ports:
+      - "8003:8000"
+    depends_on:
+      - db
+
+# Fazendo a migracao inicial dos dados
+  #docker-compose run web python manage.py makemigrations
+  #docker-compose run web python manage.py migrate
+# Criando o superuser para acessar a app
+  #docker-compose run web python manage.py createsuperuser
