@@ -95,7 +95,7 @@ notificacao-sucesso:
   - executor-deploy
   when: on_success
   script:
-  - echo "tudo deu certo"
+  - sh notificacao.sh 'tudo deu certo projeto publicado'
 
 notificacao-falhas:
   stage: notificacao
@@ -103,7 +103,7 @@ notificacao-falhas:
   - executor-deploy
   when: on_failure
   script:
-  - echo "deu errado"
+  - sh notificacao.sh 'algo deu errado na pipeline, por favor verifiquem'
   
 
 
