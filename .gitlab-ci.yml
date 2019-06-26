@@ -95,7 +95,7 @@ notificacao-sucesso:
   - executor-deploy
   when: on_success
   script:
-  - sh notificacao.sh 'sucesso'
+  - sh notificacaoSucesso.sh 
 
 notificacao-falhas:
   stage: notificacao
@@ -103,7 +103,7 @@ notificacao-falhas:
   - executor-deploy
   when: on_failure
   script:
-  - sh notificacao.sh 'falhou'
+  - echo sh notificacaoFalha.sh
   
 
 
